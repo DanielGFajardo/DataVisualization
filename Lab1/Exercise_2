@@ -1,8 +1,13 @@
 <script src='https://d3js.org/d3.v7.min.js'></script> 
  
-<p>First paragraph</p> 
-<p>Second paragraph</p> 
+<p id="First">First paragraph</p> 
+<p id="Second">Second paragraph</p> 
  
 <script> 
     d3.select("p").style("color", "red"); 
+    //adding extra action to demonstrate ability to change DOM
+    d3.select("p").style("font-family", "geneva"); //Modify font to Geneva 
+    d3.select("#Second").style("color", "Blue"); //Second instance identified by ID as better practice than iterating
+    d3.select("#Second").style("font-size", "25px"); // Increase the font size to 25px
 </script> 
+
