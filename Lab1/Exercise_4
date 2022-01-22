@@ -21,4 +21,6 @@
     		d3.select("#div"+i).style('display','none')//make the rest of divs dissapear
       }
     }
+    d3.select("#div1").text('start')
+    d3.select("#div6").text('end')
 </script> 
