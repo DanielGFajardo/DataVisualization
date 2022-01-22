@@ -1,0 +1,13 @@
+<script src='https://d3js.org/d3.v7.min.js'></script> 
+ 
+<script> 
+		for(var i = 1;i<=10;i++){ //iterate 10 times starting from 1
+    	let newspan = d3.select("body").append('div'); //dinamically create a div entity in the body object
+    	newspan.text(i); //set the content of the div to integer target of the iteration
+      if(i<=5){ //true for the first 5 elements
+      	newspan.style('color','red') // modify color to red 
+      }else{    //for the last 5
+      	newspan.style('color','green') // modify color to green
+      }
+    }
+</script> 
