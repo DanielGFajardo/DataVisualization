@@ -1,0 +1,22 @@
+<script src='https://d3js.org/d3.v7.min.js'></script> 
+ 
+<script> 
+var myData = ['a', 4, 1, 'b', 6, 2, 8, 9, 'z' ]; //added indicated dataset also changed  ‘z’ to 'z' as it was not recognized 
+      
+var span = d3.select("body") //modify varible to span instead of p
+          .selectAll("span") 
+          .data(myData) 
+          .enter() 
+            .append('span') //add span instead of p
+            .text(function (d, i) {  // text function for modifiying content of the span object
+                     return myData[i];  // adding the corresponding character or number from myData
+            })
+            .style("color", function(d, i) { // style method to modify style attributes like color 
+                    if(isNaN(myData[i])){ //check if the ith element of the myData array is 'Not a Number' 
+                     		return "blue" // it is not a number so return color blue
+                     }
+                     else{ // it is a number
+                     		return "green" //return green for the color attribute of the given span
+                     }
+                }); 
+</script> 
