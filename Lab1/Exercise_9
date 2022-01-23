@@ -1,0 +1,44 @@
+<script src='https://d3js.org/d3.v7.min.js'></script> 
+ 
+<script> 
+ 
+let titaniccsv = 'https://raw.githubusercontent.com/dsindy/kaggle-titanic/master/data/test.csv'; 
+/* 
+PassengerId,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked 
+892,3,"Kelly, Mr. James",male,34.5,0,0,330911,7.8292,,Q 
+893,3,"Wilkes, Mrs. James (Ellen Needs)",female,47,1,0,363272,7,,S 
+894,2,"Myles, Mr. Thomas Francis",male,62,0,0,240276,9.6875,,Q 
+895,3,"Wirz, Mr. Albert",male,27,0,0,315154,8.6625,,S 
+*/ 
+ var counter = 0
+ var totalAge = 0
+ var counterFormal = 0
+ var maleCounter = 0
+ var femaleCounter = 0
+ 
+async function main(){ //perform everything inside of an async function to be able to control the workflow
+		await d3.csv(titaniccsv,  function(data,i) { //execute the csv function with async for the execution to continue only once it finish
+    counter++; // add one reading
+    age = parseInt(data.Age) // get age of the passenger
+    if(!isNaN(age)){ // if the age is not empty 
+    	totalAge = totalAge + age ; // add the age to the total age counter
+    }
+    if(data.Sex=="male"){ // if the passenger is male add one to the male counter
+    	maleCounter++;
+    }else{   
+    	femaleCounter++; // otherwise add one to the female counter
+    }
+    })
+    //here the execution of the csv has finished and the values has been recorded
+    console.log("Total Passengers: "+counter) //number of passengers
+    console.log("Total Passengers With Formal Names: "+counterFormal) //passengers with Mrs and Ms
+    console.log("Total Male Passengers : "+maleCounter) 
+    console.log("Ratio Male: "+Math.round((maleCounter/counter)*100,2)+"%") //percentage of male passengers, rounded to two decimals
+    console.log("Total Female Passengers : "+femaleCounter)
+    console.log("Ratio Female: "+Math.round((femaleCounter/counter)*100,2)+"%") // percentage of female passengers, rounded to two decimals
+    console.log("Average Age: "+Math.round((totalAge/counter),2))// average age of the passengers, rounded to two decimals
+ } 
+ main()
+; 
+
+</script> 
