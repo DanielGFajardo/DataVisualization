@@ -1,1 +1,51 @@
-1
+<script src='https://d3js.org/d3.v7.min.js'></script> 
+ 
+<script> 
+		let dataCSV = 'https://raw.githubusercontent.com/DanielGFajardo/DataVisualization/main/Lab1/Exercise_12/data.csv';
+    //Create SVG element 
+    var svg = d3.select("body") 
+    .append("svg") 
+    .attr("width",  400) 
+    .attr("height", 400) 
+    .style("border", '1px solid green'); 
+ 
+ 		d3.csv(dataCSV, function(data){ // load the csv data
+    				console.log(data)
+    				if(data.shape == "rect") // identify rectangle
+									svg.append(data.shape)
+                  .attr("x",parseInt(data.x)) // apply the specific rect attributes
+                  .attr("y",parseInt(data.y))
+                  .attr("width",parseInt(data.width))
+                  .attr("height",parseInt(data.height))
+                  .attr("fill",data.color)
+            else if(data.shape == "circle"){ // identify circle 
+            			svg.append(data.shape)
+                  .attr("cx",parseInt(data.x)) // set specifc cirle attributes
+                  .attr("cy",parseInt(data.y))
+                  .attr("r",parseInt(data.radius))
+            }
+            else if(data.shape == "ellipse"){ // identify ellipse 
+            			svg.append(data.shape)
+                  .attr("cx",parseInt(data.cx)) // apply attributes for ellipse
+                  .attr("cy",parseInt(data.cy))
+                  .attr("rx",parseInt(data.rx))
+                  .attr("ry",parseInt(data.ry))
+            }
+            
+		})
+    /*svg.append("rect") 
+            .attr("x", 100) 
+            .attr("y", 30) 
+            .attr("width", 200) 
+            .attr("height", 100) 
+            .attr("fill", 'pink'); 
+ 
+ 
+ 
+    //Create and append text element into group 
+    svg.append("text") 
+     .attr("x", 150) 
+     .attr("y", 50) 
+     .attr("stroke", "#fff") 
+     .text("This is some text!"); */
+</script>
