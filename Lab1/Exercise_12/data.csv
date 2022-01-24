@@ -1,3 +1,4 @@
-circle,100,100,50,50,blue;
-rect,400,200,100,50,pink;
-ellipse,200,300,50,200,blue;
+shape,x,y,width,height,color
+circle,100,100,50,50,blue
+rect,400,200,100,50,pink
+ellipse,200,300,50,200,blue
