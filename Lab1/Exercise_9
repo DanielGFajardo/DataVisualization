@@ -28,6 +28,9 @@ async function main(){ //perform everything inside of an async function to be ab
     }else{   
     	femaleCounter++; // otherwise add one to the female counter
     }
+    if(data.Name.includes("Mr") | data.Name.includes("Mrs")){ // if the passenger name includes Mr or Mrs
+    	counterFormal++;
+    }
     })
     //here the execution of the csv has finished and the values has been recorded
     console.log("Total Passengers: "+counter) //number of passengers
