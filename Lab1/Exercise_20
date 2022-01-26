@@ -1,0 +1,54 @@
+<script src='https://d3js.org/d3.v7.min.js'></script>
+
+<script>
+  const width = 400;
+  const height = 300;
+
+  var data = [10, 15, 20, 25, 30];
+  var svg = d3.select("body")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  var xscale = d3.scaleLinear()
+    .domain([0, d3.max(data)])
+    .range([0, width - 100]);
+
+  var yscale = d3.scaleLinear()
+    .domain([0, d3.max(data)])
+    .range([height / 2, 0]);
+
+  var x_axis = d3.axisBottom()
+    .scale(xscale);
+
+  var y_axis = d3.axisLeft()
+    .scale(yscale);
+
+  var top_axis = d3.axisTop() // declare top axis
+    .scale(xscale); // set the scale to be the same as the bottom one 
+
+  var right_axis = d3.axisRight() // declare right axis
+    .scale(yscale); // set the scale to be the same as the left one 
+
+  svg.append("g")
+    .attr("transform", "translate(50, 20)") // added 10 units to the y position for better display
+    .call(y_axis);
+
+  var xAxisTranslate = height / 2 + 10;
+
+  svg.append("g")
+    .attr("transform", "translate(50, " + (xAxisTranslate+10) + ")") // added 10 units
+    .call(x_axis)
+  
+  svg.append("g")
+    .attr("transform", "translate(50, 20 )") // set init of the axis in the same point as the left axis end poing
+    .call(top_axis) // call the specific variable for axis definition
+    .style('color', 'blue') // set color to blue
+  
+  svg.append("g")
+    .attr("transform", "translate("+ (height + 50) +", 20)") // set initial position to the height of the bottom axis plus 50 as it is the initial offset 
+    .call(right_axis) // call the specific variable for axis definition
+    .style('color', 'blue') // set color to blue
+
+</script>
+
