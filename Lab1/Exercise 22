@@ -10,16 +10,18 @@ const yMax   = ySize - margin*2;
  
 // Create Random Points 
 const numPoints = 100; 
-const data      = []; 
-for (let i = 0; i < numPoints; i++)  {  data.push( {x: i/100, y: Math.sin( 6.2 * i/100 ) }  );   } 
+const dataSin      = []; 
+for (let i = 0; i < numPoints; i++)  {  dataSin.push( {x: i/100, y: Math.sin( 6.2 * i/100 ) }  );   } 
  
 // Get the 'limits' of the data - the full extent (mins and max) 
-plotData(data) // call the plot function 
+const xExtent = d3.extent( dataSin, d=>{ return d.x } ); 
+const yExtent = d3.extent( dataSin, d=>{ return d.y } ); 
 
-function plotData(data){ // function enclosure definition
-// so the plotted data fits perfectly  
-const xExtent = d3.extent( data, d=>{ return d.x } ); 
-const yExtent = d3.extent( data, d=>{ return d.y } ); 
+plotData(dataSin) // call the plot function for sin wave
+
+function plotData(dataInputted){ // function enclosure definition
+// so the plotted data fits perfectly 
+var data = dataInputted
  
 // Append SVG Object to the Page 
 const svg = d3.select("body") 
@@ -68,5 +70,6 @@ svg.append("path")
                 .x(function(d) { return x(d.x)  }) 
                 .y(function(d) { return y(d.y)  }) 
    ); 
+  
 }
 </script> 
