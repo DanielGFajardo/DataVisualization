@@ -7,28 +7,32 @@ const ySize  = 600;
 const margin = 40; 
 const xMax   = xSize - margin*2; 
 const yMax   = ySize - margin*2; 
- 
 // Create Random Points 
 const numPoints = 100; 
-const data      = []; 
-for (let i = 0; i < numPoints; i++)  {  data.push( {x: i/100, y: Math.sin( 6.2 * i/100 ) }  );   } 
+const dataSin      = []; 
+for (let i = 0; i < numPoints; i++)  {  dataSin.push( {x: i/100, y: Math.sin( 6.2 * i/100 ) }  );   } 
+const dataCos      = []; //initialize cosine data
+for (let i = 0; i < numPoints; i++)  {  dataCos.push( {x: i/100, y: Math.cos( 6.2 * i/100 ) }  );   } 
  
 // Get the 'limits' of the data - the full extent (mins and max) 
-plotData(data) // call the plot function 
+const xExtent = d3.extent( dataSin, d=>{ return d.x } ); //use sin data s both functions has same limits
+const yExtent = d3.extent( dataSin, d=>{ return d.y } ); 
 
-function plotData(data){ // function enclosure definition
-// so the plotted data fits perfectly  
-const xExtent = d3.extent( data, d=>{ return d.x } ); 
-const yExtent = d3.extent( data, d=>{ return d.y } ); 
- 
-// Append SVG Object to the Page 
+//initialize the graph
 const svg = d3.select("body") 
               .append("svg") 
               .attr('width',  xSize  ) 
               .attr('height', ySize  ) 
               .append("g") 
               .attr("transform","translate(" + margin + "," + margin + ")"); 
+addLine(dataSin,"blue") // call the plot function for sin wave
+addLine(dataCos,"green") // call the plot function for cos wave
+
+// so the plotted data fits perfectly 
  
+// Append SVG Object to the Page 
+
+function addLine(data,color){ //function for adding a line based on the data and the color
 // X Axis 
 const x = d3.scaleLinear() 
             .domain([ xExtent[0], xExtent[1] ]) 
@@ -58,24 +62,16 @@ svg.append("g")
    .attr("transform", `translate(${yMax},0)`) 
    .call(d3.axisRight(y)); 
  
+console.log(data)
 // Add the line 
-svg.append("path") //keep line while adding dots
+svg.append("path") 
    .datum(data) 
    .attr("fill", "none") 
-   .attr("stroke", "steelblue") 
+   .attr("stroke", color) //change color to the specified one
    .attr("stroke-width", 1.5) 
    .attr("d", d3.line() 
                 .x(function(d) { return x(d.x)  }) 
                 .y(function(d) { return y(d.y)  }) 
    ); 
-  
-svg.selectAll("dot") // add dots for every point on data
-   .data(data)  
-   .enter() 
-   .append("circle") // create a new circle
-   .attr("cx", function (d) { return x(d.x) } ) // x position
-   .attr("cy", function (d) { return y(d.y) } ) // y posiiton
-   .attr("r", 5)  // fixed radius
-   .style("fill", "red"); 
 }
 </script> 
