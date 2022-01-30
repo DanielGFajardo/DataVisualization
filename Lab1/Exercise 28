@@ -1,0 +1,56 @@
+<script src='https://d3js.org/d3.v7.min.js'></script> 
+ 
+<style> 
+svg rect { 
+            fill: blue; 
+} 
+ 
+svg text { 
+            fill:white; 
+            font: 10px sans-serif; 
+            text-anchor: end; 
+} 
+</style> 
+ 
+<script> 
+var data = [5, 10, 12, 6]; 
+ 
+var width       = 200; 
+var scaleFactor = 10; 
+var barHeight   = 20; 
+var body = d3.select('body'); 
+ 
+var myColor0 = d3.scaleLinear().domain([1,10]).range(["white", "blue"]); //initialize color array
+ 
+var graph = d3.select("body") 
+      .append("svg") 
+      .attr("width", width) 
+      .attr("height", barHeight * data.length); 
+ 
+var bar = graph.selectAll("g") 
+      .data(data) 
+      .enter() 
+      .append("g") 
+      .attr("transform", function(d, i) { 
+        return "translate(0," + i * barHeight + ")"; 
+      }); 
+ 
+bar.append("rect") 
+  .attr("width", function(d) { 
+      return d * scaleFactor; 
+  }) 
+  .attr("height", barHeight - 1)
+  .style("fill",function(d,i){ //set color of the rect
+  		console.log(myColor0(d/2)) // print the color value
+    	return myColor0(d/2) // set the color
+  })
+ 
+bar.append("text") 
+  .attr("x", function(d) { return (d*scaleFactor); }) 
+  .attr("y", barHeight / 2) 
+  .attr("dy", ".35em") 
+  .text(function(d) { return d; }); 
+ 
+
+
+</script> 
