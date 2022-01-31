@@ -23,6 +23,7 @@
                   .attr("cx",parseInt(data.x)) // set specifc cirle attributes
                   .attr("cy",parseInt(data.y))
                   .attr("r",parseInt(data.radius))
+                  .attr("fill",data.color)
             }
             else if(data.shape == "ellipse"){ // identify ellipse 
             			svg.append(data.shape)
@@ -30,6 +31,7 @@
                   .attr("cy",parseInt(data.cy))
                   .attr("rx",parseInt(data.rx))
                   .attr("ry",parseInt(data.ry))
+                  .attr("fill",data.color)
             }
             else if(data.shape == "line"){ // identify line
             			svg.append(data.shape)
@@ -38,7 +40,7 @@
                   .attr("x2",parseInt(data.x2))
                   .attr("y1",parseInt(data.y))
                   .attr("y2",parseInt(data.y2))
-                  .attr("stroke","red") // set red color
+                  .attr("stroke",data.color) // set red color
             }
             
 		})
