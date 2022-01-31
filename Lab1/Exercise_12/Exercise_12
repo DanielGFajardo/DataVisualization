@@ -31,6 +31,15 @@
                   .attr("rx",parseInt(data.rx))
                   .attr("ry",parseInt(data.ry))
             }
+            else if(data.shape == "line"){ // identify line
+            			svg.append(data.shape)
+                  //console.log(data.x,data.x2,data.y,data.y2	)
+                  .attr("x1",parseInt(data.x)) // apply attributes for line
+                  .attr("x2",parseInt(data.x2))
+                  .attr("y1",parseInt(data.y))
+                  .attr("y2",parseInt(data.y2))
+                  .attr("stroke","red") // set red color
+            }
             
 		})
     /*svg.append("rect") 
