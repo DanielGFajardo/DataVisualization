@@ -9,7 +9,8 @@
     // write your d3 code here..  
  
    console.log('d3.version:', d3.version); 
+   //The outputted version is "7.3.0",  it is neccessary to right-click and inspect element to see the console
+
 </script> 
 </body> 
 </html> 
-//The outputted version is "7.3.0",  it is neccessary to right-click and inspect element to see the console
