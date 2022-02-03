@@ -17,10 +17,9 @@ let paragraph = d3.select("body")
                 .text(function (d, i) { 
                     console.log("d.name: " + d.name); //the structure is the same but one new variable is added
                     console.log("d.val:  " + d.val); 
-                    console.log(); 
                     console.log("i: " + i); 
                     console.log("this: " + this); 
  
-                    return 'cont:' + d.name; // return value is used to set the 'text' 
+                    return 'cont:' + d.name +"  -->  value: "+ d.val // return value is used to set the 'text' 
                 }); 
 </script> 
