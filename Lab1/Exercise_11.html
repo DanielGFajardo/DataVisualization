@@ -1,3 +1,4 @@
+
 <script src='https://d3js.org/d3.v7.min.js'></script> 
  
 <script> 
@@ -9,28 +10,28 @@
     .style("border", '1px solid green'); 
  
     //Create line element inside SVG 
-    svg.append("line") 
+    svg.append("line") //line 1 - black
        .attr("x1", 100) 
        .attr("x2", 200) 
        .attr("y1", 100) 
        .attr("y2", 100) 
        .attr("stroke", "black") // top line black color
-   	svg.append("line") 
-       .attr("x1", 200) 
-       .attr("x2", 100) 
-       .attr("y1", 200) 
-       .attr("y2", 200) 
-       .attr("stroke", "red")  //bottom line red color
-    svg.append("line") 
+   	svg.append("line") //line 2 - red
        .attr("x1", 200) 
        .attr("x2", 200) 
        .attr("y1", 100) 
        .attr("y2", 200) 
+       .attr("stroke", "red")  //bottom line red color
+    svg.append("line") //line 3 - green
+       .attr("x1", 200) 
+       .attr("x2", 100) 
+       .attr("y1", 200) 
+       .attr("y2", 200) 
        .attr("stroke", "green") //right line green color
-    svg.append("line") 
+    svg.append("line") //line 4 - yellow
        .attr("x1", 100) 
        .attr("x2", 100) 
-       .attr("y1", 100) 
-       .attr("y2", 200) 
+       .attr("y1", 200) 
+       .attr("y2", 100) 
        .attr("stroke", "yellow") //yellow left line
 </script> 
