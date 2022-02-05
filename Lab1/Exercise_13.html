@@ -12,20 +12,34 @@
            .attr("cx", 0) 
            .attr("cy", 50) 
            .attr("r", 50)
-           .remove()//remove the object
+           
 
      svg.append("ellipse") 
            .attr("cx", 250) 
            .attr("cy", 50) 
            .attr("rx", 150) 
            .attr("ry", 50)
-           .remove() //remove the object
-     
+           
+    svg.append("rect") 
+            .attr("x", 100) 
+            .attr("y", 30) 
+            .attr("width", 200) 
+            .attr("height", 100) 
+            .attr("fill", 'pink'); 
+ 
+ 
+ 
+    //Create and append text element into group 
+    svg.append("text") 
+     .attr("x", 150) 
+     .attr("y", 50) 
+     .attr("stroke", "#fff") 
+     .text("This is some text!"); 
             
-              
- 		d3.csv(dataCSV, function(data){ // load the csv data
+    svg.selectAll("*").remove()     //remove other elements 
+ 		d3.csv(dataCSV, function(data,i){ // load the csv data
     				console.log(data)
-            //d3.selectAll("shape").exit().remove()
+            
     				if(data.shape == "rect") // identify rectangle
 									svg.append(data.shape)
                   
@@ -66,19 +80,5 @@
             }
             
 		})
-    /*svg.append("rect") 
-            .attr("x", 100) 
-            .attr("y", 30) 
-            .attr("width", 200) 
-            .attr("height", 100) 
-            .attr("fill", 'pink'); 
- 
- 
- 
-    //Create and append text element into group 
-    svg.append("text") 
-     .attr("x", 150) 
-     .attr("y", 50) 
-     .attr("stroke", "#fff") 
-     .text("This is some text!"); */
+    
 </script>
