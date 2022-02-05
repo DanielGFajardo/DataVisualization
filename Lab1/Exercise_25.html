@@ -26,7 +26,6 @@ const svg = d3.select("body")
               .append("g") 
               .attr("transform","translate(" + margin + "," + margin + ")"); 
 addLine(dataSin,"blue") // call the plot function for sin wave
-addLine(dataCos,"green") // call the plot function for cos wave
 
 // so the plotted data fits perfectly 
  
@@ -73,5 +72,13 @@ svg.append("path")
                 .x(function(d) { return x(d.x)  }) 
                 .y(function(d) { return y(d.y)  }) 
    ); 
+svg.selectAll("dot") 
+   .data(data)  
+   .enter() 
+   .append("circle") 
+   .attr("cx", function (d) { return x(d.x) } )  //positionof the circle
+   .attr("cy", function (d) { return y(d.y) } ) 
+   .attr("r", 5) 
+   .style("fill", "blue"); 
 }
 </script> 
