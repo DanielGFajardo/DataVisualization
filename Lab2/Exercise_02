@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Lab 2 - Exercise 1">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Daniel Gonzalez Fajardo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <style> 
 div { 
   position: relative; 
@@ -25,3 +34,4 @@ span:hover + div {
  <!--modify border radius so an ellipse is displays -->
 <span>Hover over me!</span> 
 <div style="border-radius: 50%">I will show an ellipse on hover</div> 
+</html>
