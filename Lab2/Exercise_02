@@ -1,0 +1,27 @@
+<style> 
+div { 
+  position: relative; 
+  background-color: yellow; 
+  padding: 20px; 
+  display: none; 
+} 
+span:{
+  display:block;
+  position:absolute;
+}
+   
+span:hover + div { 
+  position: absolute; 
+  display: inline-block; 
+} 
+</style> 
+ 
+<span>Hover over me!</span> 
+<div>I will show on hover</div>
+ <!-- modify color attr -->
+<span>Hover over me!</span> 
+<div style="background-color:blue" >I will show a blue square on hover</div> 
+
+ <!--modify border radius so an ellipse is displays -->
+<span>Hover over me!</span> 
+<div style="border-radius: 50%">I will show an ellipse on hover</div> 
