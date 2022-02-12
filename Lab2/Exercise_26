@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Lab 2 - Exercise 1">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Daniel Gonzalez Fajardo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+ 
+<script src="//d3js.org/d3.v7.min.js"></script> 
+ 
+<script> 
+let dateInit = new Date("2000-01-01") // initial date
+let dateEnd = new Date("2020-01-01") // end date
+let cc = d3.interpolateDate(dateInit, dateEnd) //interpolation
+console.log( cc(0.60)  ); //ask fro 60%
+//Result Sun Jan 01 2012 00:00:00 GMT+0000 (WET)
+</script>  
+ 
+</html>
