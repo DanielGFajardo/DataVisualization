@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Lab 2 - Exercise 1">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Daniel Gonzalez Fajardo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script> 
+ 
+<script> 
+    var svg = d3.select("body") 
+        .append("svg") 
+        .attr("width", 500) 
+        .attr("height", 500); 
+ 
+ 
+    var bar1 = svg.append("rect") 
+        .attr("fill", "blue") 
+        .attr("x", 100) 
+        .attr("y", 20) 
+        .attr("height", 20) 
+        .attr("width", 10) 
+ 
+    var bar2 = svg.append("rect") 
+        .attr("fill", "blue") 
+        .attr("x", 120) 
+        .attr("y", 20) 
+        .attr("height", 20) 
+        .attr("width", 10) 
+        
+    var bar3 = svg.append("rect")  //add third bar
+        .attr("fill", "blue") 
+        .attr("x", 140) //set the new bar a little bit more to the right
+        .attr("y", 20) 
+        .attr("height", 20) 
+        .attr("width", 10) 
+ 
+    update(); 
+ 
+function update() { 
+    bar1.transition() 
+        .ease(d3.easeLinear) 
+        .duration(2000) 
+        .attr("height",100) 
+ 
+    bar2.transition() 
+        .ease(d3.easeLinear) 
+        .duration(2000) 
+        .delay(2000) 
+        .attr("height",100) 
+       
+     bar3.transition() //add transition for the new bar
+        .ease(d3.easeLinear) 
+        .duration(2000) 
+        .delay(4000) //modify the delay
+        .attr("height",100) 
+    
+    bar1.transition()  //add transition for shrinking first bar
+        .ease(d3.easeLinear) 
+        .duration(2000) 
+        .delay(6000) //modify the delay 4º
+        .attr("height",20) 
+ 
+    bar2.transition() //add transition for shrinking second bar
+        .ease(d3.easeLinear) 
+        .duration(2000)  
+        .delay(8000)  //modify the delay 5º
+        .attr("height",20) 
+       
+    bar3.transition() //add transition for shrinking third bar
+        .ease(d3.easeLinear) 
+        .duration(2000) 
+        .delay(10000) //modify the delay 6º
+        .attr("height",20) 
+} 
+</script> 
+ 
+ 
+</html>
