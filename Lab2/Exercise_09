@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Lab 2 - Exercise 1">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Daniel Gonzalez Fajardo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script> 
+
+ 
+<script> 
+d3.select('body') //first element
+  .append("div") 
+  .style('width',  '100px') 
+  .style('height', '100px')                                                                         
+  .style('background-color', 'blue') 
+  .style('transform', 'scale(1.0)') 
+  .transition() 
+  .ease( d3.easeBounce ) //default transition
+  .duration(1000) 
+  .style("background-color", "red") 
+  .style('transform', 'scale(0.5)') 
+ 
+d3.select('body') //second element
+  .append("div") 
+  .style('width',  '100px') 
+  .style('height', '100px')                                                                         
+  .style('background-color', 'blue') 
+  .style('transform', 'scale(1.0)') 
+  .transition() 
+  .ease( d3.easeExp ) //exponential ease
+  .duration(1000) 
+  .style("background-color", "red") 
+  .style('transform', 'scale(0.5)') 
+ 
+d3.select('body') //third element
+  .append("div") 
+  .style('width',  '100px') 
+  .style('height', '100px')                                                                         
+  .style('background-color', 'blue') 
+  .style('transform', 'scale(1.0)') 
+  .transition() 
+  .ease( d3.easeSin ) //sin ease
+  .duration(1000) 
+  .style("background-color", "red") 
+  .style('transform', 'scale(0.5)') 
+</script> 
+</html>
