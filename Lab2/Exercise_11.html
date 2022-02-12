@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Lab 2 - Exercise 1">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Daniel Gonzalez Fajardo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script> 
+ 
+<script> 
+    d3.select('body') 
+      .append('text') 
+      .style('width', '400px') 
+      .style('height', '400px') 
+      .style('color',"red")
+      .style("font-size","1.5em")
+      .text("Put your mouse here") //define the text 
+ 
+ 
+    d3.selectAll("text") 
+      .on("mouseover", function(event){ 
+          d3.select(this) 
+            .style('color',"orange") //set color to orange
+            .style("font-size","2em") //ncrease the font size
+      }) 
+      .on("mouseout", function(){ 
+          d3.select(this) 
+            .style('color',"red") //set color back to red
+            .style("font-size","1.5em") // set font back to normal
+      }); 
+</script> 
+</html>
