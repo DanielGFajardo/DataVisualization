@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Lab 2 - Exercise 1">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Daniel Gonzalez Fajardo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script> 
+ 
+<script> 
+    d3.select('body') 
+    	.style('width', '400px') 
+      .style('height', '400px') 
+      .append('div') 
+      .style('width', '100px') 
+      .style('height', '20px') 
+      .style('background-color', 'green')
+      
+      
+    let text = d3.select('body') 
+     					.append("text")
+              .attr("transform", "translate(200,200) rotate(0)")
+              
+ 		d3.select('body')
+     .on("mousemove", function(event){
+      	position = d3.pointer(event)
+        console.log("translate("+position[0]+","+position[1]+")")
+        d3.select("text")
+        		.attr("dy", ".35em")
+            .attr("transform", "translate("+position[0]+","+position[1]+") rotate(0)")
+            .text(position[0]+", "+position[1]);
+      })
+    d3.selectAll("div") 
+      .on("mouseover", function(event){
+      		
+          d3.select(this) 
+            .style("background-color", "orange")
+            .style("border-radius","50%") // modify borders so it looks like an ellipse
+            .style("height","300px") // increase height 
+       
+      		console.log()
+    // Get current event info 
+          // Note: d3.event  (event) passed as the first argument to all listeners 
+          console.log(event)
+ 
+          // Get x & y co-ordinates 
+          // Note: d3.mouse was removed in d3v6, you should use d3.pointer(event) 
+          console.log(d3.pointer(event)); 
+      }) 
+     
+      .on("mouseout", function(){ 
+          d3.select(this) 
+            .style("background-color", "steelblue") 
+            .style("border-radius","0%") // set the borders back to normal
+            .style("height","100px") //set height to a different value than initial but different ffrom the mouse in one
+      }); 
+</script> 
+</html>
