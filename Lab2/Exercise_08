@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Lab 2 - Exercise 1">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Daniel Gonzalez Fajardo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script> 
+ 
+ 
+<script> 
+let div = d3.select('body') 
+  .append("div") 
+	.style('width',  '100px')
+  .style('height', '100px') 
+  .style('background-color', 'blue') 
+  
+d3.selectAll("div") 
+      .on("mouseover", function(event){ 
+          d3.select(this)
+          .transition() //declare transition for mouseover event
+          .duration(1000) //a second duration
+          .style('width',  '50px')
+          .style('height', '50px') //reduce size for first transition
+          .style("background-color", "red") //red color
+      }) 
+      .on("mouseout", function(){ 
+          d3.select(this)
+          .transition() 
+          .duration(1000) //second duration
+          .style('width',  '100px') //set height back to normal
+          .style('height', '100px') 
+          .style('background-color', 'blue') // set color back to original one
+      }); 
+</script> 
+ 
+</html>
