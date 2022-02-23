@@ -18,10 +18,13 @@
       .style('height', '20px') 
       .style('background-color', 'green')
       
-      
-    let text = d3.select('body') 
-     					.append("text")
-              .attr("transform", "translate(200,200) rotate(0)")
+    let svg  = d3.select('body') //create an svg frame
+    			.append("svg")
+          .attr("width",1000)
+          .attr("height",1000)
+    
+    svg.append("text") // create a text object
+       .attr("transform", "translate(200,200) rotate(0)")
               
  		d3.select('body')
      .on("mousemove", function(event){
@@ -30,7 +33,7 @@
         d3.select("text")
         		.attr("dy", ".35em")
             .attr("transform", "translate("+position[0]+","+position[1]+") rotate(0)")
-            .text(position[0]+", "+position[1]);
+            .text(position[0]+", "+position[1]); // set the text to the position of the mouse
       })
     d3.selectAll("div") 
       .on("mouseover", function(event){
