@@ -10,29 +10,21 @@
 <script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script> 
  
 <!-- Add buttons --> 
-<button onclick="update(data1,'red')">Variable 1</button> 
-<button onclick="update(data2,'green')">Variable 2</button> 
-<button onclick="update(data3,'blue')">Variable 3</button>  
-<!-- specify third button and colors -->
+<button onclick="update(data1)">Variable 1</button> 
+<button onclick="update(data2)">Variable 2</button> 
  
 <script> 
 // create 2 data_set 
 const data1 = [ 
    {group: "A", value: 5}, 
-   {group: "B", value: 20}, 
+   {group: "B", value: 15}, 
    {group: "C", value: 9} 
 ]; 
  
 const data2 = [ 
-     {group: "A", value: 10}, 
-     {group: "B", value: 2},
-     {group: "C", value: 22} 
-]; 
-
-const data3 = [  //define new value
-   {group: "A", value: 5}, 
-   {group: "B", value: 10}, 
-   {group: "C", value: 15}
+   {group: "A", value: 10}, 
+   {group: "B", value: 2}, 
+   {group: "C", value: 15} 
 ]; 
  
 // set the dimensions and margins of the graph 
@@ -61,6 +53,7 @@ svg.append("g")
  
 // Add Y axis 
 var y = d3.scaleLinear() 
+ 
   .domain([0, 20]) 
   .range([ height, 0]); 
 svg.append("g") 
@@ -68,37 +61,48 @@ svg.append("g")
   .call(d3.axisLeft(y)); 
  
 // A function that create / update the plot for a given variable: 
-function update(data, color) { //modify function to indicate color 
+function update(data) { 
  
   var u = svg.selectAll("rect") 
                      .data(data) 
  
   u .enter() 
-     .append("rect")
+     .append("rect") 
+     .on("mouseover", onMouseOver) //Add listener for the mouseover event 
+     .on("mouseout", onMouseOut)   //Add listener for the mouseout event 
      .merge(u) 
-     .append("text")
-     .attr("transform", "translate(0," +100 + ")")  
-     
-     /*.on("mouseover",function(d,i){ //define the function callback for mouseover
-     				console.log(d)
-        		 d3.select(this)
-              .select("text")
-              
-         })
-     .on("mouseout",function(d,i){ // define the function callback 
-         })*/
      .transition() 
      .duration(1000) 
       .attr("x", function(d) { return x(d.group); }) 
       .attr("y", function(d) { return y(d.value); }) 
       .attr("width", x.bandwidth()) 
       .attr("height", function(d) { return height - y(d.value); }) 
-      .attr("fill", color)  //change color to the one indicated
-   
+      .attr("fill", "#69b3a2") 
+      
+ 
+} 
+//mouseover event handler function 
+function onMouseOver(d, i) { 
+ 			svg.append("text")
+      	.attr('class','value') //specify class so object can be easily removed without deleting other parts
+        .attr("x",function(){return x(i.group)}) //pecify the x position
+        .attr("y",function(){return y(i.value+1)}) // specify the y position
+        .text(function(d){
+        	return i.value;
+        })
+     console.log("here")
+} 
+ 
+//mouseout event handler function 
+function onMouseOut(d, i) { 
+			d3.selectAll('.value').remove() // remove only the text elements of the values
+        
 } 
  
 // Initialize the plot with the first dataset 
-update(data1,"red") 
+update(data1) 
+ 
+</script> 
 
 </script> 
  
