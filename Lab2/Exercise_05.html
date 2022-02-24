@@ -33,7 +33,7 @@
         d3.select("text")
         		.attr("dy", ".35em")
             .attr("transform", "translate("+position[0]+","+position[1]+") rotate(0)")
-            .text(position[0]+", "+position[1]); // set the text to the position of the mouse
+            .text(Math.round(position[0])+", "+Math.round(position[1])); // set the text to the position of the mouse, and round it
       })
     d3.selectAll("div") 
       .on("mouseover", function(event){
