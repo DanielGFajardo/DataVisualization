@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Lab 2 - Exercise 1">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Daniel Gonzalez Fajardo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script> 
+ <script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script> 
+<script> 
+  var width = 800, height = 800; 
+	var arrayValues = [1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2] // define the array
+  // setup svg 
+  d3.select('body').append('svg').attr('width',width).attr('height',height)
+
+  // generate some random data 
+  var numNodes = 100; 
+  var nodes = d3.range(numNodes).map(function(d,i) { 
+    return {radius: arrayValues[i]*4 } 
+  }) 
+
+  var simulation = d3.forceSimulation(nodes) 
+  			.force('charge', d3.forceManyBody().strength(6)) //increase the strength of the charge
+        .force("r", d3.forceRadial(function(d) { return d.type === "a" ? 100 :150; }).x(300).y(300).strength(1)) // add radial force for a radius
+         .force('collision', d3.forceCollide().radius(function(d) { 
+          return d.radius 
+      }).strength(4)) 
+        
+        .on('tick', ticked); 
+
+  function ticked() { 
+    var u = d3.select('svg') 
+      .selectAll('circle') 
+      .data(nodes) 
+      .join('circle') 
+      .attr('fill', 'blue') 
+      .attr('r', function(d) { 
+        return d.radius 
+      }) 
+      .attr('cx', function(d) { 
+        return d.x 
+      }) 
+      .attr('cy', function(d) { 
+        return d.y 
+      }) 
+			.on("mouseover", onMouseOver) //Add listener for the mouseover event 
+      .on("mouseout", onMouseOut)   //Add listener for the mouseout event  
+ 	}
+ 
+//mouseover event handler function 
+function onMouseOver(d, i) { 
+				 d3.select(this).style('fill','red') //red  when mouse is over
+} 
+ 
+//mouseout event handler function 
+function onMouseOut(d, i) { 
+        d3.select(this).style('fill','blue') //blue when the mouse moves out
+} 
+  console.log('ready..'); 
+</script> 
+</html>
+
