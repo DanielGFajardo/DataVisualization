@@ -35,11 +35,13 @@
  /* Scale rather than moving as it is only one component */
 @keyframes pulsar { 
    from{
-      transform :  scale(1.5); 
+      transform :  scale(1); 
       opacity: 1;
+      fill:yellow;
     }
     to{
-      transform: scale(1.5);
+      transform: scale(2);
+      fill:red;
       opacity: 1;
     }
 } 
