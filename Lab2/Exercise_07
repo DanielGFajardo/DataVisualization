@@ -11,21 +11,20 @@
  
  
 <script> 
-div = d3.select('body') 
+d3.select('body') 
   .append("div") 
-	.style('width',  '100px')
+  .style('width',  '100px') 
   .style('height', '100px') 
   .style('background-color', 'blue') 
   .transition() 
-  .style('width',  '50px')
-  .style('height', '50px') //reduce size for first transition
   .duration(1000) 
+  .style('width',  '200px') 
+  .style('height', '200px')
   .style("background-color", "red")
   .transition() //transition declaration
   .duration(2000) //transition duration
-  .style("background-color", "green") //adding the green color as target color for background 
-  .style('width',  '200px')
-  .style('height', '200px') //increase the size on the last transition
-}
+  .style('width',  '100px') 
+  .style('height', '100px')
+  .style("background-color", "green"); //adding the green color as target color for background 
 </script>  
 </html>
