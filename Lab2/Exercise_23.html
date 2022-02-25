@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Lab 2 - Exercise 1">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Daniel Gonzalez Fajardo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script> 
+ 
+<!-- Add buttons --> 
+<button onclick="update(data1,'red')">Variable 1</button> 
+<button onclick="update(data2,'blue')">Variable 2</button> 
+<!-- specify third button and colors -->
+ 
+<script> 
+// create 2 data_set 
+const data1 = []; 
+ 
+const data2 = []; 
+const numPoints = 100;
+for (let i = 0; i < numPoints; i++)  {  data1.push( {x: i/100, y: Math.sin( 6.2 * i/100 ) }  );   } 
+for (let i = 0; i < numPoints; i++)  {  data2.push( {x: i/100, y: Math.cos( 6.2 * i/100 ) }  );   } 
+// set the dimensions and margins of the graph 
+const margin = {top: 30, right: 30, bottom: 70, left: 60}; 
+const width  = 460 - margin.left - margin.right; 
+const height = 400 - margin.top - margin.bottom; 
+ 
+// append the svg object to the body of the page 
+var svg = d3.select('body') 
+            .append('div') 
+  .append("svg") 
+    .attr("width", width + margin.left + margin.right) 
+    .attr("height", height + margin.top + margin.bottom) 
+  .append("g") 
+    .attr("transform", 
+          "translate(" + margin.left + "," + margin.top + ")"); 
+ 
+// X axis 
+var x = d3.scaleLinear() 
+  .range([ 0, width ]) 
+  .domain([0,1]) 
+  
+svg.append("g") 
+	.attr("class","xaxis")
+  .attr("transform", "translate(0," + height + ")") 
+  .call(d3.axisBottom(x));
+  
+svg.append("g") //add top axis
+	.attr("class","xaxis")
+  .call(d3.axisTop(x)); 
+ 
+// Add Y axis 
+var y = d3.scaleLinear() 
+  .domain([-1, 1]) 
+  .range([ height, 0]); 
+  
+svg.append("g") 
+  .attr("class", "myYaxis") 
+  .call(d3.axisLeft(y)); 
+  
+svg.append("g") //add new axis
+	.attr("transform", "translate("+width+",0)") // move the axis to the right
+  .attr("class", "myYaxis") 
+  .call(d3.axisRight(y)); 
+
+svg.append("path")
+      .datum(data1)
+      .attr("class","line")
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 1.5) // set stroke
+      .attr("d", d3.line()
+        .x(function(d) {
+        return x(d.x) })
+        .y(function(d) {
+        return y(d.y) })
+        )
+
+ 
+// A function that create / update the plot for a given variable: 
+function update(data,color) { //modify function to indicate color 
+		console.log(data)
+   var u = svg.select(".line") 
+            .datum(data)  // specify the use o datum for the appropiate formating of th egraph
+             .transition() 
+             .duration(1000) 
+              .attr("d", d3.line()
+                .x(function(d) {
+                return x(d.x) }) // specify new x
+                .y(function(d) {
+                return y(d.y) }) //specify new y
+                )
+    //.remove(); //remove the square*/
+} 
+ 
+// Initialize the plot with the first dataset 
+ 
+</script> 
+ 
+</html>
