@@ -23,7 +23,7 @@
 
   var simulation = d3.forceSimulation(nodes) 
   			.force('charge', d3.forceManyBody().strength(6)) //increase the strength of the charge
-        .force("r", d3.forceRadial(function(d) { return d.type === "a" ? 100 :150; }).x(300).y(300).strength(1)) // add radial force for a radius
+        .force("r", d3.forceRadial(function(d) { return 150 }).x(300).y(300).strength(1)) // add radial force for a radius
          .force('collision', d3.forceCollide().radius(function(d) { 
           return d.radius 
       }).strength(4)) 
@@ -52,11 +52,28 @@
 //mouseover event handler function 
 function onMouseOver(d, i) { 
 				 d3.select(this).style('fill','red') //red  when mouse is over
+         d3.select(this)
+         .transition()     // adds animation 
+         .duration(400) 
+         .attr('r',function(d){
+         		return 20
+         })
+
+         force.nodes()[0].x = m[0];
+         force.nodes()[0].y = m[1];
+         force.start()
+         force.resume()
+	
 } 
  
 //mouseout event handler function 
 function onMouseOut(d, i) { 
         d3.select(this).style('fill','blue') //blue when the mouse moves out
+        .transition()     // adds animation 
+         .duration(400) 
+         .attr('r',function(d){
+         		return 2*4
+         })
 } 
   console.log('ready..'); 
 </script> 
